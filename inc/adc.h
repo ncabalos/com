@@ -1,6 +1,7 @@
 #ifndef ADC_H
 #define ADC_H
 
+// Number of samples to average
 #define SAMPLE_SIZE 1
 
 #define ADC_TRIGSEL_CTMU 1
