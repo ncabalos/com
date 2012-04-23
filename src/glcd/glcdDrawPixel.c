@@ -1,11 +1,10 @@
+#include <htc.h>
 #include "typedef.h"
 #include "glcd.h"
 
-extern UINT_8 glcdReadData(UINT_8 cs);
-extern void glcdWriteData(UINT_8 data,UINT_8 cs);
-
-
-void glcdDrawPixel(UINT_8 x, UINT_8 y)
+extern UINT_8 glcdReadRam(UINT_8 x, UINT_8 page);
+extern void glcdWriteRam(UINT_8 data, UINT_8 x, UINT_8 page);
+void glcdDrawPixel(UINT_8 x, UINT_8 y, BOOL fill)
 {
     UINT_8 page;
     UINT_8 dot;
@@ -21,22 +20,16 @@ void glcdDrawPixel(UINT_8 x, UINT_8 y)
 
     data = (0x01 << dot);
 
-    cs = (x >> 6);
-    cs = cs + 1;
+    if(fill == GLCD_PIXEL_CLEAR) data = ~data;
 
     seg = x % 64;
 
+    tmp = glcdReadRam(x,page);
 
-    glcdGotoXY(x,y);
-    tmp = glcdReadData(cs);
-    glcdGotoXY(x,y);
-    tmp = glcdReadData(cs);
+    if(fill == GLCD_PIXEL_FILL)
+        data |= tmp;
+    else
+        data &= tmp;
 
-
-    data |= tmp;
-
-    glcdGotoXY(x,y);
-    glcdWriteData(data,cs);
-
-
+    glcdWriteRam(data,x,page);
 }

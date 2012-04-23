@@ -2,7 +2,7 @@
 #include "glcd.h"
 
 extern void glcdWriteRam(UINT_8 data, UINT_8 x, UINT_8 page);
-void glcdClearScreen(void)
+void glcdFillScreen(void)
 {
     UINT_8 x;
     UINT_8 page;
@@ -11,7 +11,7 @@ void glcdClearScreen(void)
     {
         for(x = 0; x < 128; x++)
         {
-            glcdWriteRam(0x00,x,page);
+            glcdWriteRam(0xFF,x,page);
         }
     }
 }
