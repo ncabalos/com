@@ -1,7 +1,17 @@
+/**
+ * @brief This file contains the implementation for clearing LCD screen
+ *
+ * @file glcdClearScreen.c
+ * @author Nathaniel Abalos
+ */
+
 #include "typedef.h"
 #include "glcd.h"
 
-extern void glcdWriteRam(UINT_8 data, UINT_8 x, UINT_8 page);
+/**
+ * This function is used to clear LCD RAM of pixels
+ */
+
 void glcdClearScreen(void)
 {
     UINT_8 x;

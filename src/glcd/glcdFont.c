@@ -1,3 +1,8 @@
+/**
+ * @file glcdFont.c
+ * @author Nathaniel Abalos
+ */
+
 #include "typedef.h"
 #include "glcd.h"
 

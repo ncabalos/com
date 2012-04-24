@@ -1,8 +1,18 @@
-#include  "typedef.h"
+/**
+ * @brief This file contains the implementation for setting X and Y coordinates
+ *
+ * @file glcdGotoXY.c
+ * @author Nathaniel Abalos
+ */
 
-extern void glcdSetPage(UINT_8 page,UINT_8 cs);
-extern void glcdSetAddress(UINT_8 address,UINT_8 cs);
+#include "typedef.h"
+#include "glcd.h"
 
+/**
+ * This function is used to set location
+ * @param x X coordinate
+ * @param y Y coordinate
+ */
 void glcdGotoXY(UINT_8 x, UINT_8 y)
 {
     UINT_8 seg;

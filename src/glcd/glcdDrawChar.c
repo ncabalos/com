@@ -1,7 +1,20 @@
+/**
+ * @brief This file contains the implementation for drawing a character
+ *
+ * @file glcdDrawChar.c
+ * @author Nathaniel Abalos
+ */
+
 #include "typedef.h"
 #include "glcd.h"
 
-extern const UINT_8 glcdFont[][6];
+/**
+ * This function is used to draw a character at the specified location
+ * @param x X coordinate
+ * @param y Y coordinate
+ * @param c This is the character to draw
+ * @param fill This specifies whether to fill pixels or clear pixels
+ */
 
 void glcdDrawChar(UINT_8 x, UINT_8 y, char c,BOOL fill)
 {

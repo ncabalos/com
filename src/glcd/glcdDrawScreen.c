@@ -1,8 +1,18 @@
+/**
+ * @brief This file contains the implementation for drawing to the LCD screen
+ *
+ * @file glcdDrawScreen.c
+ * @author Nathaniel Abalos
+ */
+
 #include "typedef.h"
 #include "glcd.h"
-extern void glcdSetPage(UINT_8 page,UINT_8 cs);
-extern void glcdSetAddress(UINT_8 address,UINT_8 cs);
-extern void glcdWriteData(UINT_8 data,UINT_8 cs);
+
+/**
+ * This function will be used to draw contents of RAM to LCD.
+ * 
+ */
+
 void glcdDrawScreen(void)
 {
     UINT_8 x = 0;

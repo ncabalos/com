@@ -1,8 +1,17 @@
+/**
+ * @brief This file contains the implementation for enabling/disabling the LCD
+ *
+ * @file glcdEnable.c
+ * @author Nathaniel Abalos
+ */
+
 #include "typedef.h"
 #include "glcd.h"
 
-extern void glcdWriteInstruction(UINT_8 data,UINT_8 cs);
-
+/**
+ * This function is used to turn on or turn off LCD
+ * @param b TRUE = on, FALSE = off
+ */
 void glcdEnable(BOOL b)
 {
     if(b == TRUE)

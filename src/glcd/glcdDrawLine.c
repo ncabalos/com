@@ -1,5 +1,21 @@
+/**
+ * @brief This file contains the implementation for drawing a line
+ *
+ * @file glcdDrawLine.c
+ * @author Nathaniel Abalos
+ */
+
 #include "typedef.h"
 #include "glcd.h"
+
+/**
+ * This function will be used to draw a line to RAM
+ * @param x_start X coordinate for start point
+ * @param y_start y coordinate for start point
+ * @param x_end X coordinate for end point
+ * @param y_end Y coordinate for end point
+ * @param fill Specifies fill pixel or clear pixel
+ */
 
 void glcdDrawLine(UINT_8 x_start, UINT_8 y_start, UINT_8 x_end, UINT_8 y_end,BOOL fill) {
     INT_8 x_div_y;

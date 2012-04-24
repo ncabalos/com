@@ -1,7 +1,13 @@
+/**
+ * @file glcdFillScreen.c
+ * @author Nathaniel Abalos
+ */
+
 #include "typedef.h"
 #include "glcd.h"
-
-extern void glcdWriteRam(UINT_8 data, UINT_8 x, UINT_8 page);
+/**
+ * This function will be used to fill up the screen. 
+ */
 void glcdFillScreen(void)
 {
     UINT_8 x;
