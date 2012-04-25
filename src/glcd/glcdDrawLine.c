@@ -3,6 +3,8 @@
  *
  * @file glcdDrawLine.c
  * @author Nathaniel Abalos
+ *
+ * @ingroup glcdGroup
  */
 
 #include "typedef.h"

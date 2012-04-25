@@ -1,7 +1,6 @@
 #include <htc.h>
 #include "typedef.h"
-
-extern void tickTimerInterruptTask(void);
+#include "tickTimer.h"
 
 void setTMR2Enable(BOOL b)
 {

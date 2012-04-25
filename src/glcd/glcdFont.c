@@ -1,6 +1,8 @@
 /**
  * @file glcdFont.c
  * @author Nathaniel Abalos
+ *
+ * @ingroup glcdGroup
  */
 
 #include "typedef.h"

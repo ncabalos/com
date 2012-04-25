@@ -1,8 +1,12 @@
 /**
- * @brief This file contains the implementation for clearing LCD screen
  *
  * @file glcdClearScreen.c
+ *
+ * @brief This file contains the implementation for clearing LCD screen
+ *
  * @author Nathaniel Abalos
+ *
+ * @ingroup glcdGroup
  */
 
 #include "typedef.h"

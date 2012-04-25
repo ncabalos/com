@@ -3,6 +3,8 @@
  *
  * @file glcdGotoXY.c
  * @author Nathaniel Abalos
+ *
+ * @ingroup glcdGroup
  */
 
 #include "typedef.h"

@@ -1,6 +1,8 @@
 /**
  * @file glcdFillScreen.c
  * @author Nathaniel Abalos
+ *
+ * @ingroup glcdGroup
  */
 
 #include "typedef.h"

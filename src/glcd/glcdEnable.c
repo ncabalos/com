@@ -3,6 +3,8 @@
  *
  * @file glcdEnable.c
  * @author Nathaniel Abalos
+ *
+ * @ingroup glcdGroup
  */
 
 #include "typedef.h"

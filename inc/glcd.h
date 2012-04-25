@@ -10,6 +10,8 @@
  *
  * @author Nathaniel Abalos
  *
+ * @defgroup glcdGroup Graphical LCD
+ *
  */
 
 #ifndef GLCD_H

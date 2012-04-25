@@ -5,6 +5,8 @@
  * This file contains all functions that are hardware dependent. If using a different
  * microcontroller, these are the functions that need to be ported.
  * @author Nathaniel Abalos
+ *
+ * @ingroup glcdGroup
  */
 
 #include <htc.h>
