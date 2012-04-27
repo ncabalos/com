@@ -1,19 +1,15 @@
 #include "typedef.h"
 #include "tickTimer.h"
-
-extern void TMR2Interrupt(void);
-extern void TMR4Interrupt(void);
-extern void TMR6Interrupt(void);
-
+#include "timer.h"
 void tickTimerInterrupt(void)
 {
-#ifdef TIMER2
-    TMR2Interrupt();
+#ifdef USE_TIMER2
+    timerInterrupt2();
 #endif
-#ifdef TIMER4
-    TMR4Interrupt();
+#ifdef USE_TIMER4
+    timerInterrupt4();
 #endif
-#ifdef TIMER6
-    TMR6Interrupt();
+#ifdef USE_TIMER6
+    timerInterrupt6();
 #endif
 }

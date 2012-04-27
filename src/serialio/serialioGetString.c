@@ -9,7 +9,6 @@ void serialioGetString(SERIALIO *self, char *buff)
     ptr = buff;
     do
     {
-
         c = serialioGetChar(self);
         *ptr++ = c;
     }while(c != '\0');

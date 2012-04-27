@@ -10,11 +10,7 @@
 
 #include "typedef.h"
 #include "tickTimer.h"
-
-extern void TMR2Init(UINT_8 pre, UINT_8 post, BOOL intrp, UINT_8 pr);
-extern void TMR4Init(UINT_8 pre, UINT_8 post, BOOL intrp, UINT_8 pr);
-extern void TMR6Init(UINT_8 pre, UINT_8 post, BOOL intrp, UINT_8 pr);
-
+#include "timer.h"
 
 /**
  * @brief This function sets up a timer as a tick timer.
@@ -28,14 +24,14 @@ extern void TMR6Init(UINT_8 pre, UINT_8 post, BOOL intrp, UINT_8 pr);
  */
 void tickTimerInit(UINT_8 pre, UINT_8 post, BOOL intrp, UINT_8 pr)
 {
-#ifdef TIMER2
-    TMR2Init(pre,post,intrp,pr);
+#ifdef USE_TIMER2
+    timerInit2(pre,post,intrp,pr);
 #endif
-#ifdef TIMER4
-    TMR4Init(pre,post,intrp,pr);
+#ifdef USE_TIMER4
+    timerInit4(pre,post,intrp,pr);
 #endif
-#ifdef TIMER6
-    TMR6Init(pre,post,intrp,pr);
+#ifdef USE_TIMER6
+    timerInit6(pre,post,intrp,pr);
 #endif
 }
 

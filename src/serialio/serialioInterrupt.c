@@ -1,31 +1,14 @@
 #include "typedef.h"
 #include "serialio.h"
 
-extern BOOL isTX1IE(void);
-extern BOOL isTX1IF(void);
-extern BOOL isTX2IE(void);
-extern BOOL isTX2IF(void);
-extern BOOL isRC1IE(void);
-extern BOOL isRC1IF(void);
-extern BOOL isRC2IE(void);
-extern BOOL isRC2IF(void);
-
-extern void setTX1Char(char);
-extern void setTX2Char(char);
-extern char getRxChar1(void);
-extern char getRxChar2(void);
-
-extern void setTX1IE(BOOL);
-extern void setTX2IE(BOOL);
-
 void serialioTxInterrupt(SERIALIO *self) {
     BOOL b;
     switch (self->uartNum) {
         case USART1:
-            b = isTX1IE() && isTX1IF();
+            b = isInterruptEnableTX1HIL() && isInterruptFlagTX1HIL();
             break;
         case USART2:
-            b = isTX2IE() && isTX2IF();
+            b = isInterruptEnableTX2HIL() && isInterruptFlagTX2HIL();
             break;
         default:
             break;
@@ -33,10 +16,10 @@ void serialioTxInterrupt(SERIALIO *self) {
     if (b) {
         switch (self->uartNum) {
             case USART1:
-                setTX1Char(self->txBuffer[self->txOut]);
+                setCharTX1HIL(self->txBuffer[self->txOut]);
                 break;
             case USART2:
-                setTX2Char(self->txBuffer[self->txOut]);
+                setCharTX2HIL(self->txBuffer[self->txOut]);
                 break;
             default:
                 break;
@@ -47,10 +30,10 @@ void serialioTxInterrupt(SERIALIO *self) {
         if (!self->txCount) {
             switch (self->uartNum) {
                 case USART1:
-                    setTX1IE(FALSE);
+                    setInterruptEnableTX1HIL(FALSE);
                     break;
                 case USART2:
-                    setTX2IE(FALSE);
+                    setInterruptEnableTX2HIL(FALSE);
                     break;
                 default:
                     break;
@@ -66,10 +49,10 @@ char serialioRxInterrupt(SERIALIO *self) {
 
     switch (self->uartNum) {
         case USART1:
-            b = isRC1IE() && isRC1IF();
+            b = isInterruptEnableRC1HIL() && isInterruptFlagRC1HIL();
             break;
         case USART2:
-            b = isRC2IE() && isRC2IF();
+            b = isInterruptEnableRC2HIL() && isInterruptFlagRC2HIL();
             break;
         default:
             break;
@@ -79,10 +62,10 @@ char serialioRxInterrupt(SERIALIO *self) {
     if (b) {
         switch (self->uartNum) {
             case USART1:
-                c = getRxChar1();
+                c = getCharRC1HIL();
                 break;
             case USART2:
-                c = getRxChar2();
+                c = getCharRC2HIL();
                 break;
             default:
                 break;

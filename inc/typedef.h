@@ -1,3 +1,10 @@
+/**
+ * @file typedef.h
+ *
+ * @defgroup commonGroup Common
+ * 
+ */
+
 #ifndef TYPEDEF_H
 #define TYPEDEF_H
 

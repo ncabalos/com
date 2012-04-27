@@ -1,65 +1,65 @@
 #include <htc.h>
 #include "typedef.h"
 
-char getRxChar1(void)
+char getCharRC1HIL(void)
 {
     return RCREG1;
 }
-char getRxChar2(void)
+char getCharRC2HIL(void)
 {
     return RCREG2;
 }
 
-BOOL isRC1IE(void)
+BOOL isInterruptEnableRC1HIL(void)
 {
     return PIE1bits.RC1IE;
 }
-BOOL isRC1IF(void)
+BOOL isInterruptFlagRC1HIL(void)
 {
     return PIR1bits.RC1IF;
 }
-BOOL isRC2IE(void)
+BOOL isInterruptEnableRC2HIL(void)
 {
     return PIE3bits.RC2IE;
 }
-BOOL isRC2IF(void)
+BOOL isInterruptFlagRC2HIL(void)
 {
     return PIR3bits.RC2IF;
 }
 
-BOOL isTX1IE(void)
+BOOL isInterruptEnableTX1HIL(void)
 {
     return PIE1bits.TX1IE;
 }
-BOOL isTX1IF(void)
+BOOL isInterruptFlagTX1HIL(void)
 {
     return PIR1bits.TX1IF;
 }
-BOOL isTX2IE(void)
+BOOL isInterruptEnableTX2HIL(void)
 {
     return PIE3bits.TX2IE;
 }
-BOOL isTX2IF(void)
+BOOL isInterruptFlagTX2HIL(void)
 {
     return PIR3bits.TX2IF;
 }
 
-void setTX1IE(BOOL b)
+void setInterruptEnableTX1HIL(BOOL b)
 {
     PIE1bits.TX1IE = b;
 }
 
-void setTX2IE(BOOL b)
+void setInterruptEnableTX2HIL(BOOL b)
 {
     PIE3bits.TX2IE = b;
 }
 
-void setTX1Char(char c)
+void setCharTX1HIL(char c)
 {
     TXREG1 = c;
 }
 
-void setTX2Char(char c)
+void setCharTX2HIL(char c)
 {
     TXREG2 = c;
 }

@@ -1,63 +1,29 @@
-/* -*- indent-tabs-mode:T; c-basic-offset:8; tab-width:8; -*- vi: set ts=8:
- * $Id: tilt.c,v 1.1 2003/07/09 18:23:29 john Exp $
+/**
+ * @file kalman.c
  *
- * 1 dimensional tilt sensor using a dual axis accelerometer
- * and single axis angular rate gyro.  The two sensors are fused
- * via a two state Kalman filter, with one state being the angle
- * and the other state being the gyro bias.
- *
- * Gyro bias is automatically tracked by the filter.  This seems
- * like magic.
- *
- * Please note that there are lots of comments in the functions and
- * in blocks before the functions.  Kalman filtering is an already complex
- * subject, made even more so by extensive hand optimizations to the C code
- * that implements the filter.  I've tried to make an effort of explaining
- * the optimizations, but feel free to send mail to the mailing list,
- * autopilot-devel@lists.sf.net, with questions about this code.
- *
- *
- * (c) 2003 Trammell Hudson <hudson@rotomotion.com>
- *
- *************
- *
- *  This file is part of the autopilot onboard code package.
- *
- *  Autopilot is free software; you can redistribute it and/or modify
- *  it under the terms of the GNU General Public License as published by
- *  the Free Software Foundation; either version 2 of the License, or
- *  (at your option) any later version.
- *
- *  Autopilot is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details.
- *
- *  You should have received a copy of the GNU General Public License
- *  along with Autopilot; if not, write to the Free Software
- *  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
- *
+ * @ingroup kalmanGroup
  */
 #include <math.h>
+#include "typedef.h"
 #include "kalman.h"
 
 
-float kalmanGetAngle(KALMAN *self)
+FLOAT kalmanGetAngle(KALMAN *self)
 {
     return self->angle;
 }
 
-float kalmanGetRate(KALMAN *self)
+FLOAT kalmanGetRate(KALMAN *self)
 {
     return self->rate;
 }
-float kalmanGetBias(KALMAN *self)
+FLOAT kalmanGetBias(KALMAN *self)
 {
     return self->q_bias;
 }
 
 
-void kalmanInit(KALMAN *self, float dt, float r_angle, float q_angle, float q_gyro)
+void kalmanInit(KALMAN *self, FLOAT dt, FLOAT r_angle, FLOAT q_angle, FLOAT q_gyro)
 {
     self->dt = dt;
     self->R_angle = r_angle;
@@ -71,10 +37,10 @@ void kalmanInit(KALMAN *self, float dt, float r_angle, float q_angle, float q_gy
 }
 
 void kalmanStateUpdate(KALMAN *self,
-	float q_m	/* Pitch gyro measurement */
+	FLOAT q_m	/* Pitch gyro measurement */
 )
 {
-	float q = q_m - self->q_bias;
+	FLOAT q = q_m - self->q_bias;
 
         self->Pdot[0] = self->Q_angle - self->P[0][1] - self->P[1][0];
         self->Pdot[1] = self->P[1][1] * -1.0;
@@ -95,21 +61,21 @@ void kalmanStateUpdate(KALMAN *self,
 
 void
 kalmanUpdate(KALMAN *self,
-	float ax_m,	/* X acceleration */
-	float az_m	/* Z acceleration */
+	FLOAT ax_m,	/* X acceleration */
+	FLOAT az_m	/* Z acceleration */
 )
 {
 	/* Compute our measured angle and the error in our estimate */
-	float angle_m = atan2( -az_m, ax_m );
-	float angle_err = angle_m - self->angle;
-	float C_0 = 1;
-	float PCt_0 = C_0 *self->P[0][0]; /* + C_1 * P[0][1] = 0 */
-	float PCt_1 = C_0 * self->P[1][0]; /* + C_1 * P[1][1] = 0 */
-	float E = self->R_angle + C_0 * PCt_0;
-	float K_0 = PCt_0 / E;
-	float K_1 = PCt_1 / E;
-	float t_0 = PCt_0; /* C_0 * P[0][0] + C_1 * P[1][0] */
-	float t_1 = C_0 * self->P[0][1]; /* + C_1 * P[1][1]  = 0 */
+	FLOAT angle_m = atan2( -az_m, ax_m );
+	FLOAT angle_err = angle_m - self->angle;
+	FLOAT C_0 = 1;
+	FLOAT PCt_0 = C_0 *self->P[0][0]; /* + C_1 * P[0][1] = 0 */
+	FLOAT PCt_1 = C_0 * self->P[1][0]; /* + C_1 * P[1][1] = 0 */
+	FLOAT E = self->R_angle + C_0 * PCt_0;
+	FLOAT K_0 = PCt_0 / E;
+	FLOAT K_1 = PCt_1 / E;
+	FLOAT t_0 = PCt_0; /* C_0 * P[0][0] + C_1 * P[1][0] */
+	FLOAT t_1 = C_0 * self->P[0][1]; /* + C_1 * P[1][1]  = 0 */
 
 	self->P[0][0] -= K_0 * t_0;
 	self->P[0][1] -= K_0 * t_1;

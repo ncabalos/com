@@ -5,8 +5,6 @@
 static SERIALIO serialio_1;
 static SERIALIO serialio_2;
 
-//extern void initUSART1(UINT_8 setting);
-//extern void initUSART2(UINT_8 setting);
 
 SERIALIO * serialioInit(UINT_8 num, UINT_8 baud) {
     SERIALIO *serial;

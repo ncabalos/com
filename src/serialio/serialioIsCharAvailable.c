@@ -3,5 +3,6 @@
 
 BOOL serialioIsCharAvailable(SERIALIO *self)
 {
-    return self->rxCount;
+    if(self->rxCount == 0) return FALSE;
+    else return TRUE;
 }

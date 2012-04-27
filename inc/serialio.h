@@ -1,11 +1,14 @@
+/**
+ * @file serialio.h
+ *
+ * @defgroup serialio Serial IO
+ */
 #ifndef SERIALIO_H
 #define SERIALIO_H
 
 #define BUFFSIZE 50
 #define USART1 1
 #define USART2 2
-
-
 
 typedef struct
 {
@@ -37,5 +40,21 @@ void serialioWriteStringPolling(SERIALIO * self,char *s);
 void serialioWriteCharPolling(SERIALIO * self,char c);
 void serialioFlushRxBuffer(SERIALIO * self);
 BOOL serialioIsStringAvailable(SERIALIO * self);
+
+// HIL prototypes
+extern void setInterruptEnableTX1HIL(BOOL);
+extern void setInterruptEnableTX2HIL(BOOL);
+extern BOOL isInterruptEnableTX1HIL(void);
+extern BOOL isInterruptFlagTX1HIL(void);
+extern BOOL isInterruptEnableTX2HIL(void);
+extern BOOL isInterruptFlagTX2HIL(void);
+extern BOOL isInterruptEnableRC1HIL(void);
+extern BOOL isInterruptFlagRC1HIL(void);
+extern BOOL isInterruptEnableRC2HIL(void);
+extern BOOL isInterruptFlagRC2HIL(void);
+extern void setCharTX1HIL(char);
+extern void setCharTX2HIL(char);
+extern char getCharRC1HIL(void);
+extern char getCharRC2HIL(void);
 
 #endif

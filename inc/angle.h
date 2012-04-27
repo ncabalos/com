@@ -1,6 +1,12 @@
+/**
+ * @file angle.h
+ *
+ * @defgroup angleGroup  Angle Conversion
+ */
+
 #ifndef ANGLE_H
 #define ANGLE_H
 
-float radianToDegree(float);
-float degreeToRadian(float);
+FLOAT radianToDegree(FLOAT);
+FLOAT degreeToRadian(FLOAT);
 #endif

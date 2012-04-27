@@ -1,19 +1,16 @@
 #include "typedef.h"
 #include "tickTimer.h"
-
-extern void setTMR2Enable(BOOL b);
-extern void setTMR4Enable(BOOL b);
-extern void setTMR6Enable(BOOL b);
+#include "timer.h"
 
 void tickTimerEnable(BOOL b)
 {
-#ifdef TIMER2
-    setTMR2Enable(b);
+#ifdef USE_TIMER2
+    timerSetEnable2(b);
 #endif
-#ifdef TIMER4
-    setTMR4Enable(b);
+#ifdef USE_TIMER4
+    timerSetEnable4(b);
 #endif
-#ifdef TIMER6
-    setTMR6Enable(b);
+#ifdef USE_TIMER6
+    timerSetEnable6(b);
 #endif
 }
